@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="陕西社会保险" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>陕西社会保险</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./icons/icon-180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+    <link rel="icon" href="./icon.svg" />
+  </head>
+  <body>
+    <main id="app" class="app">
+      <div class="frame" role="application" aria-label="陕西社会保险">
+        <section class="screen is-active" data-screen="home">
+          <img
+            class="screen__img"
+            src="../tupian/tp1.jpg"
+            alt="主页"
+            draggable="false"
+          />
+
+          <button class="hotspot hotspot--handle" type="button" data-nav="handle" aria-label="业务办理"></button>
+          <button class="tools-btn" type="button" data-nav="tools" aria-label="安装/打包">安装/打包</button>
+        </section>
+
+        <section class="screen" data-screen="handle">
+          <img
+            class="screen__img"
+            src="../tupian/tp2.jpg"
+            alt="业务办理"
+            draggable="false"
+          />
+
+          <button class="hotspot hotspot--to-query" type="button" data-nav="query" aria-label="我要查询"></button>
+          <button class="back" type="button" data-nav="home" aria-label="返回"></button>
+        </section>
+
+        <section class="screen" data-screen="query">
+          <img
+            class="screen__img"
+            src="../tupian/tp3.jpg"
+            alt="业务查询"
+            draggable="false"
+          />
+
+          <button class="back" type="button" data-nav="handle" aria-label="返回"></button>
+        </section>
+
+        <section class="screen" data-screen="tools">
+          <div class="tools">
+            <h1 class="tools__title">安装 / 打包测试</h1>
+
+            <div class="tools__card">
+              <div class="tools__row">
+                <div class="tools__label">当前站点</div>
+                <div id="site-url" class="tools__value"></div>
+              </div>
+              <div class="tools__row">
+                <div class="tools__label">PWA 状态</div>
+                <div id="pwa-status" class="tools__value">等待浏览器检测…</div>
+              </div>
+              <button id="pwa-install" class="tools__primary" type="button" hidden>安装到桌面</button>
+            </div>
+
+            <div class="tools__card">
+              <div class="tools__subtitle">生成 Android APK（推荐流程）</div>
+              <ol class="tools__list">
+                <li>用 Chrome 打开本页，确认“PWA 状态”为可安装。</li>
+                <li>打开 PWA Builder，输入“当前站点”地址并生成 Android 包。</li>
+                <li>用 Android Studio 打开生成项目，构建 APK 安装测试。</li>
+              </ol>
+              <a class="tools__link" href="https://www.pwabuilder.com/" target="_blank" rel="noreferrer">打开 PWA Builder</a>
+            </div>
+
+            <div class="tools__card">
+              <div class="tools__subtitle">iOS 描述文件（WebClip）</div>
+              <ul class="tools__list">
+                <li><a class="tools__link" href="../webclip-profile/install.mobileconfig">下载 install.mobileconfig</a></li>
+                <li><a class="tools__link" href="../webclip-profile/install_with_icon.mobileconfig">下载 install_with_icon.mobileconfig</a></li>
+                <li>请用 Safari 下载后：设置 → 已下载描述文件 → 安装。</li>
+              </ul>
+            </div>
+
+            <button class="tools__back" type="button" data-nav="home" aria-label="返回主页">返回主页</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
