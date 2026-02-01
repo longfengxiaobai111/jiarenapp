@@ -1,0 +1,125 @@
+:root {
+  --back-top: 2px;
+  --back-left: 2px;
+  --img-y-home: 50%;
+  --img-y-handle: 50%;
+  --img-y-query: 50%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.app {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.frame {
+  position: relative;
+  width: min(430px, 100vw);
+  aspect-ratio: 390 / 844;
+  max-height: 100vh;
+  overflow: hidden;
+  background: #000;
+  border-radius: 18px;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 0;
+    background: #000;
+  }
+
+  .frame {
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.screen.is-active {
+  display: block;
+}
+
+.screen__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% var(--img-y-home);
+}
+
+.screen[data-screen="handle"] .screen__img {
+  object-position: 50% var(--img-y-handle);
+}
+
+.screen[data-screen="query"] .screen__img {
+  object-position: 50% var(--img-y-query);
+}
+
+.hotspot {
+  position: absolute;
+  z-index: 2;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.hotspot--handle {
+  left: 18%;
+  top: 17%;
+  width: 18%;
+  height: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.hotspot--query {
+  left: 36%;
+  top: 17%;
+  width: 18%;
+  height: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.hotspot--to-query {
+  left: 50%;
+  top: 70%;
+  width: 20%;
+  height: 42%;
+  transform: translate(-50%, -50%);
+}
+
+.back {
+  position: absolute;
+  z-index: 2;
+  left: var(--back-left);
+  top: calc(env(safe-area-inset-top, 0px) + var(--back-top));
+  width: 18%;
+  height: 7%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+}
